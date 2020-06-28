@@ -1,11 +1,13 @@
-<%= link_to "投稿画面へ", "/users/new"%>
+<%= link_to "投稿画面へ", new_user_path%>
 <%# @usersには(User.allによって)userテーブルから取得してきた全てのデータが配列になって入っている %>
 <% @users.each do |user| %>
 <p>
 <%= user.name %>
 <%= user.age %>
-<%= link_to "編集", "/users/#{user.id}/edit", method: :get %>
-<%# data: {confirm: "削除しますか？"}とすると、削除ボタンを押したときにポップアップが出る %>
-<%= link_to "削除", "/users/#{user.id}", method: :delete, data: {confirm: "削除しますか？"} %>
+<%= link_to "詳細", user_path(user.id), method: :get %>
+<%# each文の中の変数userを使っているので(user.id)とする %>
+<%= link_to "編集", edit_user_path(user.id), method: :get %>
+<%# each文の中の変数userを使っているので(user.id)とする %>
+<%= link_to "削除", user_path(user.id), method: :delete, data: {confirm: "削除しますか？"} %>
 </p>
 <% end %>
